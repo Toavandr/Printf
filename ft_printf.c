@@ -36,11 +36,10 @@ int	ft_printf(const char *str, ...)
 		if (str[i] == '%')
 		{
 			i++;
-			if (str[i] == valid_format)
-				c += ft_format(arg, *str, i);
-			else
-				c += ft_putchar(str[i]);
+			if (valid_format(str[i] || str[i] == '%'))
+				c += ft_format(arg, (char*)str, i);
 		}
+		c += ft_putchar(str[i]);
 		i++;
 	}
 	va_end(arg);

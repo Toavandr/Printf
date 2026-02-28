@@ -19,16 +19,23 @@ int	ft_format(va_list arg, char *str, int i)
 	count = 0;
 	if (str[i] == 'c')
 		count += ft_putchar(va_arg(arg, int));
-	if (str[i] == 's')
-		count += ft_putstr(va_arg(arg, int));
-	if (str[i] == 'd' || str[i] == 'i')
+	else if (str[i] == 's')
+		count += ft_putstr(va_arg(arg, char *));
+	else if (str[i] == 'p')
+    {
+        count += ft_putstr("0x");
+        count += ft_putnbrbase(va_arg(arg, unsigned long long),
+                "0123456789abcdef");
+    }
+	else if (str[i] == 'd' || str[i] == 'i')
 		count += ft_putnbr(va_arg(arg, int));
-	if (str[i] == 'u')
+	else if (str[i] == 'u')
 		count += ft_putnbrbase(va_arg(arg, unsigned int), "0123456789");
-	if (str[i] == 'x')
+	else if (str[i] == 'x')
 		count += ft_putnbrbase(va_arg(arg, unsigned int), "0123456789abcdef");
-	if (str[i] == 'X')
+	else if (str[i] == 'X')
 		count += ft_putnbrbase(va_arg(arg, unsigned int), "0123456789ABCDEF");
-	if (str[i] == '%')
+	else if (str[i] == '%')
 		count += ft_putchar('%');
+	return (count);
 }

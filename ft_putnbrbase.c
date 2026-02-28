@@ -24,17 +24,17 @@ size_t	ft_strlen(const char *str)
 	return (i);
 }
 
-int	ft_putnbrbase(unsigned long long nbr, char *base)
+int ft_putnbrbase(unsigned long long nbr, char *base)
 {
-	size_t	count;
-	size_t	len;
+    int     count;
+    size_t  len;
 
-	if (!base || !nbr)
-		return (0);
-	len = ft_strlen(base);
-	count = 0;
-	while (nbr >= len)
-		count += ft_putnbrbase((nbr / len), base);
-	ft_putchar(base[nbr % len]);
-	return (len);
+    count = 0;
+    if (!base)
+        return (0);
+    len = ft_strlen(base);
+    if (nbr >= len)
+        count += ft_putnbrbase(nbr / len, base);
+    count += ft_putchar(base[nbr % len]);
+    return (count);
 }

@@ -10,13 +10,13 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libfprintf.a
+NAME = libftprintf.a
 CC = cc
 FLAGS = -Wall -Werror -Wextra
 HEADER = ft_printf.h
 
 SRC = ft_format.c ft_printf.c ft_putchar.c \
-	  ft_putnbr.c ft_putnbrbase.c ft_putstr
+	  ft_putnbr.c ft_putnbrbase.c ft_putstr.c
 
 OBJ = $(SRC:.c=.o)
 
