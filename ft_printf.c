@@ -6,7 +6,7 @@
 /*   By: toavandr <toavandr@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/18 09:27:15 by toavandr          #+#    #+#             */
-/*   Updated: 2026/02/18 11:27:54 by toavandr         ###   ########.fr       */
+/*   Updated: 2026/02/28 23:58:13 by toavandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 int	valid_format(char c)
 {
 	if (c == 'c' || c == 's' || c == 'p' || c == 'd'
-		|| c == 'i' || c == 'u' || c == 'x' || c == 'X')
+		|| c == 'i' || c == 'u' || c == 'x' || c == 'X'
+		|| c == '%')
 		return (1);
 	return (0);
 }
@@ -36,10 +37,13 @@ int	ft_printf(const char *str, ...)
 		if (str[i] == '%')
 		{
 			i++;
-			if (valid_format(str[i] || str[i] == '%'))
-				c += ft_format(arg, (char*)str, i);
+			if (valid_format(str[i]))
+				c += ft_format(arg, (char *)str, i);
+			else
+				c += ft_putchar(str[i - 1]);
 		}
-		c += ft_putchar(str[i]);
+		else
+			c += ft_putchar(str[i]);
 		i++;
 	}
 	va_end(arg);
